@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.InicialActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/login_imageView"
         android:layout_width="125dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.499">
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/login_et_user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/login_et_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -65,20 +65,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            app:layout_constraintTop_toBottomOf="@+id/login_et_user" />
     </android.support.constraint.ConstraintLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login_btn_login"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="33dp"
+        android:background="@color/bluePrimary"
         android:text="Login"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        android:background="@color/bluePrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.548"
