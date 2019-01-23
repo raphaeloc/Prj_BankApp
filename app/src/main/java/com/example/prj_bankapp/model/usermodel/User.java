@@ -1,4 +1,4 @@
-package com.example.prj_bankapp.model;
+package com.example.prj_bankapp.model.usermodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

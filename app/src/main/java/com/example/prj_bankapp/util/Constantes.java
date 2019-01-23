@@ -8,4 +8,6 @@ public class Constantes {
     public static final String BANKACCOUNT = "bankAccount";
     public static final String AGENCY = "agency";
     public static final String BALANCE = "balance";
+    //
+    public static final String ARQUIVODEPREFERENCIAS = "arquivodepreferencias";
 }

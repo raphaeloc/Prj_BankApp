@@ -1,6 +1,7 @@
 package com.example.prj_bankapp.api;
 
-import com.example.prj_bankapp.model.User;
+import com.example.prj_bankapp.model.listmodel.Statement;
+import com.example.prj_bankapp.model.usermodel.User;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -18,7 +19,7 @@ public interface BankAPI {
             @Field("password") String password);
 
     @GET("statements/{idUser}")
-    Call<String> list(
+    Call<Statement> list(
             @Path("idUser") String id
     );
 }
