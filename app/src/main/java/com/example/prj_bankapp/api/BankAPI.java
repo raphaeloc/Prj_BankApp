@@ -20,6 +20,5 @@ public interface BankAPI {
 
     @GET("statements/{idUser}")
     Call<Statement> list(
-            @Path("idUser") String id
-    );
+            @Path("idUser") String id);
 }

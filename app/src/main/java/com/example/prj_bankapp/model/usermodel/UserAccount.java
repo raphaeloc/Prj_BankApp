@@ -3,7 +3,9 @@ package com.example.prj_bankapp.model.usermodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserAccount {
+import java.io.Serializable;
+
+public class UserAccount implements Serializable {
 
     @SerializedName("userId")
     @Expose

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.prj_bankapp.R;
 import com.example.prj_bankapp.model.listmodel.StatementList;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,10 +42,12 @@ public class StatementAdapter extends RecyclerView.Adapter<StatementAdapter.Stat
         public StatementHolder(@NonNull View itemView) {
             super(itemView);
 
-            tv_title = itemView.findViewById(R.id.celula_tv_title);
-            tv_date = itemView.findViewById(R.id.celula_tv_date);
-            tv_desc = itemView.findViewById(R.id.celula_tv_desc);
-            tv_value = itemView.findViewById(R.id.celula_tv_value);
+            tv_title = itemView.findViewById(R.id.celulaCard_tv_title);
+            tv_date = itemView.findViewById(R.id.celulaCard_tv_date);
+            tv_desc = itemView.findViewById(R.id.celulaCard_tv_desc);
+            tv_value = itemView.findViewById(R.id.celulaCard_tv_value);
+
+            int i = 10;
         }
     }
 
@@ -73,9 +77,13 @@ public class StatementAdapter extends RecyclerView.Adapter<StatementAdapter.Stat
             e.printStackTrace();
         }
 
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###.##", symbols);
+        String val = decimalFormat.format(item.getValue());
 
         holder.tv_title.setText(item.getTitle());
-        holder.tv_value.setText(String.valueOf(item.getValue()));
+        holder.tv_value.setText("R$ " + val);
         holder.tv_date.setText(dateFormated);
         holder.tv_desc.setText(item.getDesc());
     }

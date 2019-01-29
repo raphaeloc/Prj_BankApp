@@ -47,11 +47,12 @@ public class LoginActivity extends AppCompatActivity {
     private void inicializarVariaveis() {
         context = LoginActivity.this;
         btn_login = findViewById(R.id.login_btn_login);
+        btn_login.setEnabled(true);
         et_password = findViewById(R.id.login_et_password);
         et_user = findViewById(R.id.login_et_user);
         pb_load = findViewById(R.id.login_pb_load);
         //
-        pb_load.setVisibility(View.GONE);
+        setLoadInvisible();
         //
         preferences = getSharedPreferences(Constantes.ARQUIVODEPREFERENCIAS, 0);
         //
@@ -76,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pb_load.setVisibility(View.VISIBLE);
+                btn_login.setEnabled(false);
+                setLoadVisible();
                 SharedPreferences.Editor editor = preferences.edit();
                 //
                 String user, password;
@@ -88,12 +90,12 @@ public class LoginActivity extends AppCompatActivity {
                 if (mensagem.equals("")) {
                     //
                     viewModel.doLogin(user, password);
-                    pb_load.setVisibility(View.GONE);
+                    setLoadInvisible();
                     editor.putString(Constantes.NAME, user);
                     editor.commit();
                 } else {
                     //
-                    pb_load.setVisibility(View.GONE);
+                    setLoadInvisible();
                     //
                     et_user.setBackgroundResource(R.drawable.shape);
                     et_password.setBackgroundResource(R.drawable.shape);
@@ -129,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         //
         Bundle mBundle = new Bundle();
         //
+        mBundle.putSerializable("teste", userAccount);
         mBundle.putInt(Constantes.USERID, userAccount.getUserId());
         mBundle.putString(Constantes.NAME, userAccount.getName());
         mBundle.putString(Constantes.BANKACCOUNT, userAccount.getBankAccount());
@@ -140,5 +143,13 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(mIntent);
         //
         finish();
+    }
+
+    private void setLoadInvisible(){
+        pb_load.setVisibility(View.INVISIBLE);
+    }
+
+    private void setLoadVisible(){
+        pb_load.setVisibility(View.VISIBLE);
     }
 }

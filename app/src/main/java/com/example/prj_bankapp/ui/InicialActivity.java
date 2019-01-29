@@ -20,11 +20,16 @@ import android.widget.Toast;
 
 import com.example.prj_bankapp.adapter.StatementAdapter;
 import com.example.prj_bankapp.model.listmodel.StatementList;
+import com.example.prj_bankapp.model.usermodel.UserAccount;
 import com.example.prj_bankapp.ui.viewmodel.UserViewModel;
 import com.example.prj_bankapp.util.Constantes;
 import com.example.prj_bankapp.R;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class InicialActivity extends AppCompatActivity {
 
@@ -63,7 +68,7 @@ public class InicialActivity extends AppCompatActivity {
         //
         viewModel.getList(String.valueOf(mBundle.getInt(Constantes.USERID)));
         //
-        statementAdapter = new StatementAdapter(R.layout.celula, context);
+        statementAdapter = new StatementAdapter(R.layout.celulacard, context);
         //
         viewModel.getStatementList().observe(this, new Observer<List<StatementList>>() {
             @Override
@@ -77,6 +82,7 @@ public class InicialActivity extends AppCompatActivity {
         rv_list.setHasFixedSize(true);
         rv_list.setLayoutManager(layoutManager);
         //
+        UserAccount user = (UserAccount) mBundle.getSerializable("teste");
         setUserData();
         //
     }
@@ -120,8 +126,13 @@ public class InicialActivity extends AppCompatActivity {
 
     private void setUserData(){
         tv_name.setText(mBundle.getString(Constantes.NAME));
-        String teste = mBundle.getString(Constantes.AGENCY);
         tv_agency.setText(mBundle.getString(Constantes.AGENCY) + " / " + mBundle.getString(Constantes.BANKACCOUNT));
-        tv_balance.setText(String.valueOf(mBundle.getDouble(Constantes.BALANCE)));
+
+        Locale locale = new Locale("pt", "br");
+
+        String num = String.valueOf(mBundle.getDouble(Constantes.BALANCE)).replace(".", "");
+        String numFormat = NumberFormat.getCurrencyInstance(locale).format(Double.parseDouble(num));
+
+        tv_balance.setText(numFormat);
     }
 }
